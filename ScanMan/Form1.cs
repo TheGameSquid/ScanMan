@@ -119,11 +119,17 @@ namespace ScanMan
             }
             else
             {
-                if(p.Length==9)
+                if(p.Length == 9)
                 {
-                    Asset itm = pnlItems.Controls.Find((pnlItems.Controls.Count - 1).ToString(), true)[0] as Asset;
-                    itm.txtAsset.Text = p;
-                    
+                    if (pnlItems.Controls.Count == 0)
+                    {
+                        MessageBox.Show("Please scan an asset-type first!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        Asset itm = pnlItems.Controls.Find((pnlItems.Controls.Count - 1).ToString(), true)[0] as Asset;
+                        itm.txtAsset.Text = p;   
+                    }                       
                 }
                 else
                 {
