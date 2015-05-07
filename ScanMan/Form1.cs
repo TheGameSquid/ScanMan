@@ -249,7 +249,7 @@ namespace ScanMan
                 Phrase pt2 = new Phrase("Asset#", tf3);
                 celTitle2.AddElement(pt2);
                 PdfPCell celTitle3 = new PdfPCell();
-                Phrase pt3 = new Phrase("Ad Info", tf3);
+                Phrase pt3 = new Phrase("AD Info", tf3);
                 celTitle3.AddElement(pt3);
                 float[] widths = new float[] { 1f, 1.5f, 10f,};
                 table.SetWidths(widths);
