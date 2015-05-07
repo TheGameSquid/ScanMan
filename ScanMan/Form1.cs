@@ -93,14 +93,16 @@ namespace ScanMan
                 if (p.Substring(0, 3) == "RN_" || p.Substring(0, 2) == "WO" || p.Substring(0, 2) == "GO")
                 {
                     txtReden.Text = p.Substring(3);
-                    if (txtReden.Text.ToUpper().Contains("IN"))
-                    {
-                        inbound = true;
-                    }
-                    else
-                    {
-                        inbound = false;
-                    }
+                    // TODO: There is currently no "inbound" logic yet
+                    inbound = false;
+                    //if (txtReden.Text.ToUpper().Contains("IN"))
+                    //{
+                    //    inbound = true;
+                    //}
+                    //else
+                    //{
+                    //    inbound = false;
+                    //}
                 }
                 if (p.Substring(0, 3) == "CM_")
                 {
@@ -369,9 +371,5 @@ namespace ScanMan
         {
             getBarcodeScanner();
         }
-
-
-
-
     }
 }
