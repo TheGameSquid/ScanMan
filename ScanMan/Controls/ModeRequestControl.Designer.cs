@@ -156,6 +156,7 @@
             this.pictureScanner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureScanner.BackColor = System.Drawing.Color.GreenYellow;
             this.pictureScanner.Image = global::ScanMan.Properties.Resources.scanner;
+            this.pictureScanner.InitialImage = global::ScanMan.Properties.Resources.scanner;
             this.pictureScanner.Location = new System.Drawing.Point(1423, 9);
             this.pictureScanner.Margin = new System.Windows.Forms.Padding(6);
             this.pictureScanner.Name = "pictureScanner";
