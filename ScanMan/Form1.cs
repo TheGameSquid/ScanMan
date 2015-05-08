@@ -235,11 +235,11 @@ namespace ScanMan
                 Phrase p = new Phrase("Addendum - " + movement + " materiaal stock \n\n", tf);
                 l1.Add(p);
 
-                Phrase p2 = new Phrase("Ondergetekende, " + frmCurrent.txtNaam.Text + " verklaart hierbij onderstaand materiaal "+movement2+" Yptostock te vervoeren.\n\n", tf2);
+                Phrase p2 = new Phrase("Ondergetekende, " + frmCurrent.txtNaam.Text + " verklaart hierbij onderstaand materiaal " + movement2 + " Yptostock te vervoeren.\n\n", tf2);
                 l1.Add(p2);
-                Phrase p4 = new Phrase("Departement: "+frmCurrent.txtReden.Text+"\n", tf2);
+                Phrase p4 = new Phrase("Departement: " + frmCurrent.txtDepartement.Text  + "\n", tf2);
                 l1.Add(p4);
-                Phrase p5 = new Phrase("Locatie : " + frmCurrent.txtDepartement.Text + "\n", tf2);
+                Phrase p5 = new Phrase("Reden : " + frmCurrent.txtReden.Text + "\n", tf2);
                 l1.Add(p5);
                 PdfPTable table = new PdfPTable(3);
                 PdfPCell celTitle = new PdfPCell();
