@@ -37,8 +37,10 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.modeControlRequest = new ScanMan.ModeRequestControl();
+            this.panelMain = new System.Windows.Forms.Panel();
+            this.modeSelectionControl1 = new ScanMan.ModeSelectionControl();
             this.toolStrip1.SuspendLayout();
+            this.panelMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -55,7 +57,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStrip1.Size = new System.Drawing.Size(1673, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(1674, 39);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -114,21 +116,28 @@
             this.toolStripButton4.Text = "toolStripButton4";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
-            // modeControlRequest
+            // panelMain
             // 
-            this.modeControlRequest.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.modeControlRequest.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.modeControlRequest.Location = new System.Drawing.Point(0, 39);
-            this.modeControlRequest.Name = "modeControlRequest";
-            this.modeControlRequest.Size = new System.Drawing.Size(1673, 973);
-            this.modeControlRequest.TabIndex = 12;
+            this.panelMain.Controls.Add(this.modeSelectionControl1);
+            this.panelMain.Location = new System.Drawing.Point(0, 42);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(1674, 987);
+            this.panelMain.TabIndex = 12;
+            // 
+            // modeSelectionControl1
+            // 
+            this.modeSelectionControl1.Location = new System.Drawing.Point(0, 0);
+            this.modeSelectionControl1.Name = "modeSelectionControl1";
+            this.modeSelectionControl1.Size = new System.Drawing.Size(1674, 984);
+            this.modeSelectionControl1.TabIndex = 0;
+            this.modeSelectionControl1.Load += new System.EventHandler(this.modeSelectionControl1_Load);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1673, 1012);
-            this.Controls.Add(this.modeControlRequest);
+            this.ClientSize = new System.Drawing.Size(1674, 1029);
+            this.Controls.Add(this.panelMain);
             this.Controls.Add(this.toolStrip1);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
@@ -137,6 +146,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.panelMain.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,8 +161,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private ModeRequestControl modeControlRequest;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.Panel panelMain;
+        private ModeSelectionControl modeSelectionControl1;
     }
 }
 

@@ -18,7 +18,7 @@ using ItextSharpHelper;
 
 namespace ScanMan
 {
-    public partial class ModeRequestControl : UserControl
+    public partial class ModeRequestControl : UserControl, IModeControl
     {
         private bool inbound = false;
 
@@ -71,11 +71,11 @@ namespace ScanMan
                 {
                     if (barcode.Substring(3, 3) == "PRN")
                     {
-                        PrintDoc();
+                        Print();
                     }
                     if (barcode.Substring(3, 3) == "CLR")
                     {
-                        ClearScreen();
+                        Clear();
                     }
                 }
 
@@ -102,7 +102,7 @@ namespace ScanMan
             }
         }
 
-        private void ClearScreen()
+        public void Clear()
         {
             txtDepartment.Clear();
             txtName.Clear();
@@ -112,12 +112,12 @@ namespace ScanMan
 
         private void buttonPrint_Click(object sender, EventArgs e)
         {
-            PrintDoc();
+            Print();
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
-            ClearScreen();
+            Clear();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -137,7 +137,7 @@ namespace ScanMan
             // TODO
         }
 
-        private void PrintDoc()
+        public void Print()
         {
             string sfileName = DateTime.Now.ToString("yyyyMMdd_hhmmss") + txtReason.Text + "_" + txtName.Text + ".pdf";
             SaveFileDialog of = new SaveFileDialog();

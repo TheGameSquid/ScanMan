@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace ScanMan
 {
-    public partial class ModeSelectionControl : UserControl
+    public partial class ModeSelectionControl : UserControl, IModeControl
     {
         public ModeSelectionControl()
         {
@@ -29,6 +29,28 @@ namespace ScanMan
                     this.BackColor = Color.Red;
                 }
             }
+        }
+
+        public void Clear()
+        {
+            // TODO
+        }
+
+        public void Print()
+        {
+            // TODO
+        }
+
+        private void buttonModeKitting_Click(object sender, EventArgs e)
+        {
+            Form1 parent = (Form1)this.Parent.Parent;
+            parent.ChangeMode(new ModeRequestControl());
+        }
+
+        private void buttonWIP_Click(object sender, EventArgs e)
+        {
+            Form1 parent = (Form1)this.Parent.Parent;
+            parent.ChangeMode(new ModeKittingControl());
         }
     }
 }

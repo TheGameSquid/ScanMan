@@ -40,7 +40,6 @@ namespace ScanMan
                 {
                     txtLocationAd.Text = "Not Found";
                 }
-                
             } 
         }
 

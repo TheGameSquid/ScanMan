@@ -51,15 +51,11 @@
             this.buttonAdd.TabIndex = 22;
             this.buttonAdd.Text = "Add";
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Visible = false;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // panelAssets
             // 
-            this.panelAssets.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelAssets.AutoScroll = true;
+            this.panelAssets.BackColor = System.Drawing.SystemColors.Control;
             this.panelAssets.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelAssets.Location = new System.Drawing.Point(28, 206);
             this.panelAssets.Margin = new System.Windows.Forms.Padding(6);
@@ -76,7 +72,6 @@
             this.buttonClear.TabIndex = 20;
             this.buttonClear.Text = "Clear";
             this.buttonClear.UseVisualStyleBackColor = true;
-            this.buttonClear.Visible = false;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
             // buttonPrint
@@ -88,7 +83,6 @@
             this.buttonPrint.TabIndex = 19;
             this.buttonPrint.Text = "Print";
             this.buttonPrint.UseVisualStyleBackColor = true;
-            this.buttonPrint.Visible = false;
             this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
             // 
             // labelDepartment
@@ -153,11 +147,11 @@
             // 
             // pictureScanner
             // 
-            this.pictureScanner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureScanner.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureScanner.BackColor = System.Drawing.Color.GreenYellow;
             this.pictureScanner.Image = global::ScanMan.Properties.Resources.scanner;
-            this.pictureScanner.InitialImage = global::ScanMan.Properties.Resources.scanner;
-            this.pictureScanner.Location = new System.Drawing.Point(1423, 9);
+            this.pictureScanner.InitialImage = null;
+            this.pictureScanner.Location = new System.Drawing.Point(1423, 6);
             this.pictureScanner.Margin = new System.Windows.Forms.Padding(6);
             this.pictureScanner.Name = "pictureScanner";
             this.pictureScanner.Size = new System.Drawing.Size(220, 187);
@@ -202,6 +196,5 @@
         private System.Windows.Forms.TextBox txtDepartment;
         private System.Windows.Forms.TextBox txtReason;
         private System.Windows.Forms.TextBox txtName;
-
     }
 }

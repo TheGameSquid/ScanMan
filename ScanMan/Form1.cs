@@ -21,6 +21,8 @@ namespace ScanMan
     
     public partial class Form1 : Form
     {
+        private IModeControl activeControl;
+
         public Form1()
         {
             InitializeComponent();
@@ -53,7 +55,8 @@ namespace ScanMan
                 this.Refresh();
            }
         }
-        void BarcodeReader_DataReceived(object sender, SerialDataReceivedEventArgs e)
+
+        private void BarcodeReader_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort port = (SerialPort)sender;
             string input = port.ReadExisting();
@@ -61,9 +64,41 @@ namespace ScanMan
             port.DiscardInBuffer();
         }
 
+        public void ChangeMode(Control modeControl)
+        {
+            foreach (Control control in this.panelMain.Controls)
+            {
+                if (control is IModeControl)
+                {
+                    this.panelMain.Controls.Remove(control);
+                }
+
+                this.activeControl = (IModeControl)modeControl;
+                this.panelMain.Controls.Add(modeControl);
+            }
+        }
+
         private void BarcodeLogic(string barcode)
         {
-            this.modeControlRequest.BarcodeLogic(barcode);
+            if (barcode.Substring(0, 3) == "MD_")
+            {
+                if (barcode == "MD_Selection")
+                {
+                    ChangeMode(new ModeSelectionControl());
+                }
+                else if (barcode == "MD_WIP")
+                {
+                    ChangeMode(new ModeRequestControl());
+                }
+                else if (barcode == "MD_Kitting")
+                {
+                    ChangeMode(new ModeKittingControl());
+                }
+            }
+            else
+            {
+                this.activeControl.BarcodeLogic(barcode);
+            } 
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -73,7 +108,7 @@ namespace ScanMan
 
         private void PrintDoc()
         {
-            // TODO
+            activeControl.Print();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -91,8 +126,6 @@ namespace ScanMan
             OpenSettings();
         }
 
-
-
         private void OpenSettings()
         {
             Settings frmSettings = new Settings();
@@ -107,6 +140,11 @@ namespace ScanMan
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             GetBarcodeScanner();
+        }
+
+        private void modeSelectionControl1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
