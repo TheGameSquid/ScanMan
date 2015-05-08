@@ -2,96 +2,60 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.IO.Ports;
+using System.Diagnostics;
 using System.DirectoryServices.ActiveDirectory;
 using System.DirectoryServices.AccountManagement;
 using System.DirectoryServices;
+using System.Drawing;
 using System.IO;
+using System.IO.Ports;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using ItextSharpHelper;
-using System.Diagnostics;
 
 namespace ScanMan
 {
-    
-    public partial class Form1 : Form
+    public partial class ModeRequestControl : UserControl
     {
-        public bool inbound = false;
-        public Form1()
+        private bool inbound = false;
+
+        public ModeRequestControl()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {           
-            getBarcodeScanner();
-        }
-
-        private void getBarcodeScanner()
+        public void BarcodeLogic(string barcode)
         {
-            try
+            if (barcode.Contains("_"))
             {
-                
-                SerialPort barCodeReader = new SerialPort(Properties.Settings.Default.ScannerCom);
-                if (!barCodeReader.IsOpen)
-                {
-                    barCodeReader.Open();
-                    barCodeReader.DataReceived += new SerialDataReceivedEventHandler(barCodeReader_DataReceived);
-                    pictureBox1.BackColor = System.Drawing.Color.YellowGreen;
-                }
-
-            }
-            catch
-            {
-                //pbErrorStat.Enabled = false;
-
-                pictureBox1.BackColor = System.Drawing.Color.OrangeRed;
-                this.Refresh();
-           }
-        }
-        void barCodeReader_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            SerialPort sp = (SerialPort)sender;
-            string inp = sp.ReadExisting();
-            int len = inp.Length;
-            this.Invoke((MethodInvoker)delegate { BarcodeLogic(inp.Remove(inp.Length - 1)); });
-            sp.DiscardInBuffer();
-        }
-
-        private void BarcodeLogic(string p)
-        {
-            if(p.Contains("_"))
-            {
-                if (p.Substring(0, 3) == "TP_")
+                if (barcode.Substring(0, 3) == "TP_")
                 {
                     Asset itm = new Asset();
 
-                    itm.Name = pnlItems.Controls.Count.ToString();
-                    itm.txtType.Text = p.Substring(3);
+                    itm.Name = panelAssets.Controls.Count.ToString();
+                    itm.txtType.Text = barcode.Substring(3);
                     itm.Anchor = AnchorStyles.Left;
                     itm.Dock = DockStyle.Right;
                     Size sz = new System.Drawing.Size();
                     sz = itm.Size;
-                    sz.Width = pnlItems.Size.Width - 10;
+                    sz.Width = panelAssets.Size.Width - 10;
                     itm.Size = sz;
-                    pnlItems.Controls.Add(itm);
+                    panelAssets.Controls.Add(itm);
                 }
-                if (p.Substring(0, 3) == "NM_")
+                if (barcode.Substring(0, 3) == "NM_")
                 {
-                    txtNaam.Text = p.Substring(3);
+                    txtName.Text = barcode.Substring(3);
                 }
-                if (p.Substring(0, 3) == "DP_")
+                if (barcode.Substring(0, 3) == "DP_")
                 {
-                    txtDepartement.Text = p.Substring(3);
+                    txtDepartment.Text = barcode.Substring(3);
                 }
-                if (p.Substring(0, 3) == "RN_" || p.Substring(0, 2) == "WO" || p.Substring(0, 2) == "GO")
+                if (barcode.Substring(0, 3) == "RN_" || barcode.Substring(0, 2) == "WO" || barcode.Substring(0, 2) == "GO")
                 {
-                    txtReden.Text = p.Substring(3);
+                    txtReason.Text = barcode.Substring(3);
                     // TODO: There is currently no "inbound" logic yet
                     inbound = false;
                     //if (txtReden.Text.ToUpper().Contains("IN"))
@@ -103,72 +67,89 @@ namespace ScanMan
                     //    inbound = false;
                     //}
                 }
-                if (p.Substring(0, 3) == "CM_")
+                if (barcode.Substring(0, 3) == "CM_")
                 {
-                    if (p.Substring(3, 3) == "PRN")
+                    if (barcode.Substring(3, 3) == "PRN")
                     {
                         PrintDoc();
                     }
-                    if (p.Substring(3, 3) == "CLR")
+                    if (barcode.Substring(3, 3) == "CLR")
                     {
                         ClearScreen();
                     }
                 }
-                
+
             }
             else
             {
-                if(p.Length == 9)
+                if (barcode.Length == 9)
                 {
-                    if (pnlItems.Controls.Count == 0)
+                    if (panelAssets.Controls.Count == 0)
                     {
                         MessageBox.Show("Please scan an asset-type first!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     else
                     {
-                        Asset itm = pnlItems.Controls.Find((pnlItems.Controls.Count - 1).ToString(), true)[0] as Asset;
-                        itm.txtAsset.Text = p;   
-                    }                       
+                        Asset itm = panelAssets.Controls.Find((panelAssets.Controls.Count - 1).ToString(), true)[0] as Asset;
+                        itm.txtAsset.Text = barcode;
+                    }
                 }
                 else
                 {
-                    txtReden.Text = p;
+                    txtReason.Text = barcode;
                 }
 
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ClearScreen();    
-        }
-
         private void ClearScreen()
         {
-            txtDepartement.Clear();
-            txtNaam.Clear();
-            txtReden.Clear();
-            pnlItems.Controls.Clear();
+            txtDepartment.Clear();
+            txtName.Clear();
+            txtReason.Clear();
+            panelAssets.Controls.Clear();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonPrint_Click(object sender, EventArgs e)
         {
             PrintDoc();
         }
 
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            ClearScreen();
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            Asset asset = new Asset();
+
+            asset.Name = panelAssets.Controls.Count.ToString();
+            asset.txtType.Text = "1234".Substring(3);
+            // Set the size of the asset control to the size of the panel - 40
+            asset.Size = new Size(panelAssets.Size.Width - 40, panelAssets.Size.Height);
+
+            panelAssets.Controls.Add(asset);
+        }
+
+        private void pictureScanner_Click(object sender, EventArgs e)
+        {
+            // TODO
+        }
+
         private void PrintDoc()
         {
-            string sfileName = DateTime.Now.ToString("yyyyMMdd_hhmmss") + txtReden.Text + "_"+txtNaam.Text+ ".pdf";
+            string sfileName = DateTime.Now.ToString("yyyyMMdd_hhmmss") + txtReason.Text + "_" + txtName.Text + ".pdf";
             SaveFileDialog of = new SaveFileDialog();
             of.InitialDirectory = @"C:\Data";
             of.InitialDirectory = Properties.Settings.Default.FileDir;
-            of.FileName =  of.InitialDirectory + "\\"+sfileName;
+            of.FileName = of.InitialDirectory + "\\" + sfileName;
             string fileName = of.FileName;
             Letter1 mydoc = new Letter1();
-            
+
             mydoc.FooterLines.Add("B-IT");
-            
-            mydoc.GenerateLetter(this,inbound);
+
+            mydoc.GenerateLetter(this, inbound);
             FileStream f = new FileStream(fileName, FileMode.Create);
             f.Write(mydoc.DocumentBytes, 0, mydoc.DocumentBytes.Length);
             f.Close();
@@ -180,15 +161,16 @@ namespace ScanMan
             info.WindowStyle = ProcessWindowStyle.Hidden;
             Process.Start(info);
         }
+
         public class Letter1 : ITextLetterBase
         {
             public Letter1()
             {
             }
-            
-            public void GenerateLetter(Form1 frmCurrent,bool inbound)
+
+            public void GenerateLetter(ModeRequestControl frmCurrent, bool inbound)
             {
-                
+
                 l1.NewPage();
                 BaseFont Titlebf = BaseFont.CreateFont(BaseFont.HELVETICA_BOLD, "utf-8", true);
                 iTextSharp.text.Font tf = new iTextSharp.text.Font(Titlebf, 14, 0, BaseColor.BLACK);
@@ -206,7 +188,7 @@ namespace ScanMan
                 iTextSharp.text.Font tf5 = new iTextSharp.text.Font(Titlebf5, 6, 0, BaseColor.BLACK);
 
                 iTextSharp.text.Image gif2 = iTextSharp.text.Image.GetInstance(Properties.Resources.logo, BaseColor.WHITE);
-                
+
 
                 string movement = "Uitgaand";
                 string movement2 = "uit";
@@ -219,9 +201,9 @@ namespace ScanMan
                 {
                     movement = "Uitgaand";
                 }
-                
+
                 GenerateLetterBase();
-                
+
                 gif2.ScaleAbsoluteHeight(30.5f);
                 gif2.ScaleAbsoluteWidth(40.5f);
                 l1.Add(new Phrase("\n"));
@@ -232,11 +214,11 @@ namespace ScanMan
                 Phrase p = new Phrase("Addendum - " + movement + " materiaal stock \n\n", tf);
                 l1.Add(p);
 
-                Phrase p2 = new Phrase("Ondergetekende, " + frmCurrent.txtNaam.Text + " verklaart hierbij onderstaand materiaal " + movement2 + " Yptostock te vervoeren.\n\n", tf2);
+                Phrase p2 = new Phrase("Ondergetekende, " + frmCurrent.txtName.Text + " verklaart hierbij onderstaand materiaal " + movement2 + " Yptostock te vervoeren.\n\n", tf2);
                 l1.Add(p2);
-                Phrase p4 = new Phrase("Departement: " + frmCurrent.txtDepartement.Text  + "\n", tf2);
+                Phrase p4 = new Phrase("Departement: " + frmCurrent.txtDepartment.Text + "\n", tf2);
                 l1.Add(p4);
-                Phrase p5 = new Phrase("Reden : " + frmCurrent.txtReden.Text + "\n", tf2);
+                Phrase p5 = new Phrase("Reden : " + frmCurrent.txtReason.Text + "\n", tf2);
                 l1.Add(p5);
                 PdfPTable table = new PdfPTable(3);
                 PdfPCell celTitle = new PdfPCell();
@@ -248,14 +230,14 @@ namespace ScanMan
                 PdfPCell celTitle3 = new PdfPCell();
                 Phrase pt3 = new Phrase("AD Info", tf3);
                 celTitle3.AddElement(pt3);
-                float[] widths = new float[] { 1f, 1.5f, 10f,};
+                float[] widths = new float[] { 1f, 1.5f, 10f, };
                 table.SetWidths(widths);
                 table.AddCell(celTitle);
                 table.AddCell(celTitle2);
                 table.AddCell(celTitle3);
                 table.CompleteRow();
 
-                foreach (Control ctr in frmCurrent.pnlItems.Controls)
+                foreach (Control ctr in frmCurrent.panelAssets.Controls)
                 {
                     if (ctr.GetType().ToString() == "ScanMan.Asset")
                     {
@@ -286,8 +268,8 @@ namespace ScanMan
                         table.CompleteRow();
                     }
                 }
-                l1.Add(table);  
-                Phrase p6 = new Phrase("Opgemaakt op: " +DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") +" \n\n", tf2);
+                l1.Add(table);
+                Phrase p6 = new Phrase("Opgemaakt op: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " \n\n", tf2);
                 l1.Add(p6);
                 Phrase p7 = new Phrase("Handtekening werkne(e)m(st)er/opdrachtnemer\n\n", tf2);
                 l1.Add(p7);
@@ -320,59 +302,6 @@ namespace ScanMan
                 l1.Close();
                 DocumentBytes = PDFStream.GetBuffer();
             }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Asset itm = new Asset();
-            
-            itm.Name = pnlItems.Controls.Count.ToString();
-            itm.txtType.Text = "1234".Substring(3);
-            Size sz = new System.Drawing.Size();
-            sz = itm.Size;
-            sz.Width = pnlItems.Size.Width - 40;
-            itm.Size = sz;
-            
-
-            pnlItems.Controls.Add(itm);
-        }
-
-        private void pnlItems_Resize(object sender, EventArgs e)
-        {
-            foreach (Asset ast in pnlItems.Controls)
-            {
-                Size sz = new System.Drawing.Size();
-                sz = ast.Size;
-                sz.Width = pnlItems.Size.Width-40;
-                ast.Size = sz;
-            }
-            pnlItems.Refresh();
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            PrintDoc();
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            ClearScreen();
-        }
-
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            OpenSettings();
-        }
-
-        private void OpenSettings()
-        {
-            Settings frmSettings = new Settings();
-            frmSettings.ShowDialog();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            getBarcodeScanner();
         }
     }
 }
