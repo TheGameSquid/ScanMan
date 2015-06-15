@@ -12,9 +12,16 @@ namespace ScanMan
 {
     public partial class AssetKitting : UserControl
     {
+        private bool assetOK;
+
         public AssetKitting()
         {
             InitializeComponent();
+        }
+
+        public bool AssetOK
+        {
+            get { return this.assetOK; }
         }
 
         public void Clear()
@@ -41,11 +48,13 @@ namespace ScanMan
                 {
                     txtLocationAD.Text = computer.DistinguishedName;
                     txtLocationAD.BackColor = System.Drawing.Color.YellowGreen;
+                    assetOK = true;
                 }
                 else
                 {
                     txtLocationAD.Text = "Not found!";
                     txtLocationAD.BackColor = System.Drawing.Color.OrangeRed;
+                    assetOK = false;
                 }
             } 
         }

@@ -45,7 +45,6 @@ namespace ScanMan
                 {
                     barCodeReader.Open();
                     barCodeReader.DataReceived += new SerialDataReceivedEventHandler(BarcodeReader_DataReceived);
-                    // TODO pictureBox1.BackColor = System.Drawing.Color.YellowGreen;
                     toolStripButtonScanner.Image = ScanMan.Properties.Resources.Yes;
                 }
             }
@@ -53,7 +52,6 @@ namespace ScanMan
             {
                 //pbErrorStat.Enabled = false;
 
-                // TODO: pictureBox1.BackColor = System.Drawing.Color.OrangeRed;
                 toolStripButtonScanner.Image = ScanMan.Properties.Resources.No;
                 this.Refresh();
            }
@@ -106,31 +104,6 @@ namespace ScanMan
             } 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            PrintDoc();
-        }
-
-        private void PrintDoc()
-        {
-            activeControl.Print();
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            PrintDoc();
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            //ClearScreen();
-        }
-
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            OpenSettings();
-        }
-
         private void OpenSettings()
         {
             Settings frmSettings = new Settings();
@@ -142,14 +115,29 @@ namespace ScanMan
             GetBarcodeScanner();
         }
 
-        private void toolStripButton4_Click(object sender, EventArgs e)
-        {
-            GetBarcodeScanner();
-        }
-
         private void modeSelectionControl1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButtonPrint_Click(object sender, EventArgs e)
+        {
+            activeControl.Print();
+        }    
+
+        private void toolStripButtonClear_Click(object sender, EventArgs e)
+        {
+            activeControl.Clear();
+        }
+
+        private void toolStripButtonConfig_Click(object sender, EventArgs e)
+        {
+            OpenSettings();
+        }
+
+        private void toolStripButtonScanner_Click(object sender, EventArgs e)
+        {
+            GetBarcodeScanner();
         }
     }
 }
