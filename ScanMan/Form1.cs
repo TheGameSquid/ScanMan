@@ -22,6 +22,7 @@ namespace ScanMan
     public partial class Form1 : Form
     {
         private IModeControl activeControl;
+        private SerialPort barcodeReader;
 
         public Form1()
         {
@@ -30,6 +31,8 @@ namespace ScanMan
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Initialize serial port
+            barcodeReader = new SerialPort(Properties.Settings.Default.ScannerCom);
             // Initialize window, set mode to ModeSelection
             ChangeMode(new ModeSelectionControl());
             GetBarcodeScanner();
@@ -39,7 +42,6 @@ namespace ScanMan
         {
             try
             {
-                
                 SerialPort barCodeReader = new SerialPort(Properties.Settings.Default.ScannerCom);
                 if (!barCodeReader.IsOpen)
                 {
@@ -47,6 +49,7 @@ namespace ScanMan
                     barCodeReader.DataReceived += new SerialDataReceivedEventHandler(BarcodeReader_DataReceived);
                     toolStripButtonScanner.Image = ScanMan.Properties.Resources.Yes;
                 }
+
             }
             catch
             {
@@ -54,7 +57,7 @@ namespace ScanMan
 
                 toolStripButtonScanner.Image = ScanMan.Properties.Resources.No;
                 this.Refresh();
-           }
+            }
         }
 
         private void BarcodeReader_DataReceived(object sender, SerialDataReceivedEventArgs e)

@@ -52,7 +52,7 @@ namespace ScanMan
                 excelSheet.Cells[5, 2] = excelSheet.Cells[5, 2].Text + " " + controlKittingAsset.txtType.Text;
                 excelSheet.Cells[6, 2] = excelSheet.Cells[6, 2].Text + " " + txtName.Text;
 
-                string strFileName = "Kitting-" + DateTime.Now.ToString("yyyyMMdd-hhmmss") + ".xlsx";
+                string strFileName = "Kitting-" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + ".xlsx";
                 string strFile = Path.Combine(Directory.GetCurrentDirectory(), "Documents", "Output", strFileName);
                 excelWorkbook.Application.DisplayAlerts = false;
                 excelWorkbook.SaveAs(Filename: strFile, ConflictResolution: XlSaveConflictResolution.xlLocalSessionChanges);
