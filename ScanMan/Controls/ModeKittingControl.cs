@@ -36,7 +36,7 @@ namespace ScanMan
 
         public void Clear()
         {
-
+            this.controlKittingAsset.Clear();
         }
 
         public void Print()
@@ -49,8 +49,6 @@ namespace ScanMan
             excelSheet.Cells[4, 2] = excelSheet.Cells[4, 2].Text + " " + controlKittingAsset.txtAsset.Text;
             excelSheet.Cells[5, 2] = excelSheet.Cells[5, 2].Text + " " + controlKittingAsset.txtType.Text;
             excelSheet.Cells[6, 2] = excelSheet.Cells[6, 2].Text + " " + txtName.Text;
-
-            //excelSheet.Range[4, 2].Text
 
             string strFile = Path.Combine(Directory.GetCurrentDirectory(), "FLOEPDOODLE.xlsx");
             excelWorkbook.Application.DisplayAlerts = false;

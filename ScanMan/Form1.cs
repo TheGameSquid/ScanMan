@@ -29,7 +29,9 @@ namespace ScanMan
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {           
+        {
+            // Initialize window, set mode to ModeSelection
+            ChangeMode(new ModeSelectionControl());
             GetBarcodeScanner();
         }
 
@@ -45,7 +47,6 @@ namespace ScanMan
                     barCodeReader.DataReceived += new SerialDataReceivedEventHandler(BarcodeReader_DataReceived);
                     // TODO pictureBox1.BackColor = System.Drawing.Color.YellowGreen;
                 }
-
             }
             catch
             {
@@ -66,16 +67,18 @@ namespace ScanMan
 
         public void ChangeMode(Control modeControl)
         {
+            // Remove all IModeControls in the Main Panel
             foreach (Control control in this.panelMain.Controls)
             {
                 if (control is IModeControl)
                 {
                     this.panelMain.Controls.Remove(control);
-                }
-
-                this.activeControl = (IModeControl)modeControl;
-                this.panelMain.Controls.Add(modeControl);
+                }      
             }
+
+            // Add the new IModeControl, mark it as active
+            this.activeControl = (IModeControl)modeControl;
+            this.panelMain.Controls.Add(modeControl);
         }
 
         private void BarcodeLogic(string barcode)

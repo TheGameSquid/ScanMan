@@ -18,27 +18,17 @@ namespace ScanMan
 
         public void BarcodeLogic(string barcode)
         {
-            if (barcode.Contains("_"))
-            {
-                if (barcode.Substring(0, 3) == "CL_GREEN")
-                {
-                    this.BackColor = Color.Green;
-                }
-                else if (barcode.Substring(0, 3) == "CL_RED")
-                {
-                    this.BackColor = Color.Red;
-                }
-            }
+            // No specific logic required
         }
 
         public void Clear()
         {
-            // TODO
+            // No specific logic required
         }
 
         public void Print()
         {
-            // TODO
+            // No specific logic required
         }
 
         private void buttonModeKitting_Click(object sender, EventArgs e)

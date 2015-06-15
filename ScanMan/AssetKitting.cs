@@ -19,9 +19,16 @@ namespace ScanMan
 
         public void Clear()
         {
+            // Detach the event to make sure we don't fire the event on .Clear()
+            this.txtAsset.TextChanged -= txtAsset_TextChanged;
+
+            // Clear the fields
             this.txtType.Clear();
             this.txtAsset.Clear();
             this.txtLocationAD.Clear();
+
+            // Reattach it
+            this.txtAsset.TextChanged += txtAsset_TextChanged;
         }
 
         private void txtAsset_TextChanged(object sender, EventArgs e)
@@ -41,11 +48,6 @@ namespace ScanMan
                     txtLocationAD.BackColor = System.Drawing.Color.OrangeRed;
                 }
             } 
-        }
-
-        private void buttonClear_Click(object sender, EventArgs e)
-        {
-            Clear();
         }
     }
 }
