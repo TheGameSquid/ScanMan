@@ -25,6 +25,7 @@ namespace ScanMan
         public ModeRequestControl()
         {
             InitializeComponent();
+            panelAssets.AutoScroll = true;
         }
 
         public void BarcodeLogic(string barcode)
@@ -125,7 +126,6 @@ namespace ScanMan
             Asset asset = new Asset();
 
             asset.Name = panelAssets.Controls.Count.ToString();
-            asset.txtType.Text = "1234".Substring(3);
             // Set the size of the asset control to the size of the panel - 40
             asset.Size = new Size(panelAssets.Size.Width - 40, panelAssets.Size.Height);
 

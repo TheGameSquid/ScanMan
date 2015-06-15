@@ -30,14 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonPrint = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonClear = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonScanner = new System.Windows.Forms.ToolStripButton();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.toolStripButtonPrint = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonClear = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonConfig = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonScanner = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonMode = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,13 +53,36 @@
             this.toolStripSeparator2,
             this.toolStripButtonConfig,
             this.toolStripSeparator3,
-            this.toolStripButtonScanner});
+            this.toolStripButtonScanner,
+            this.toolStripButtonMode});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.toolStrip1.Size = new System.Drawing.Size(1646, 39);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
+            // 
+            // panelMain
+            // 
+            this.panelMain.Location = new System.Drawing.Point(0, 75);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(1646, 1079);
+            this.panelMain.TabIndex = 12;
             // 
             // toolStripButtonPrint
             // 
@@ -72,11 +96,6 @@
             this.toolStripButtonPrint.Text = "Print";
             this.toolStripButtonPrint.Click += new System.EventHandler(this.toolStripButtonPrint_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
-            // 
             // toolStripButtonClear
             // 
             this.toolStripButtonClear.AutoSize = false;
@@ -88,11 +107,6 @@
             this.toolStripButtonClear.Size = new System.Drawing.Size(36, 36);
             this.toolStripButtonClear.Text = "Clear";
             this.toolStripButtonClear.Click += new System.EventHandler(this.toolStripButtonClear_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
             // 
             // toolStripButtonConfig
             // 
@@ -106,11 +120,6 @@
             this.toolStripButtonConfig.Text = "Settings";
             this.toolStripButtonConfig.Click += new System.EventHandler(this.toolStripButtonConfig_Click);
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
-            // 
             // toolStripButtonScanner
             // 
             this.toolStripButtonScanner.AutoSize = false;
@@ -123,12 +132,17 @@
             this.toolStripButtonScanner.Text = "toolStripButton4";
             this.toolStripButtonScanner.Click += new System.EventHandler(this.toolStripButtonScanner_Click);
             // 
-            // panelMain
+            // toolStripButtonMode
             // 
-            this.panelMain.Location = new System.Drawing.Point(0, 75);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1646, 1079);
-            this.panelMain.TabIndex = 12;
+            this.toolStripButtonMode.AutoSize = false;
+            this.toolStripButtonMode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonMode.Image = global::ScanMan.Properties.Resources.Change;
+            this.toolStripButtonMode.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonMode.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonMode.Name = "toolStripButtonMode";
+            this.toolStripButtonMode.Size = new System.Drawing.Size(36, 36);
+            this.toolStripButtonMode.Text = "toolStripButton1";
+            this.toolStripButtonMode.Click += new System.EventHandler(this.toolStripButtonMode_Click);
             // 
             // Form1
             // 
@@ -160,6 +174,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolStripButtonScanner;
         private System.Windows.Forms.Panel panelMain;
+        private System.Windows.Forms.ToolStripButton toolStripButtonMode;
     }
 }
 

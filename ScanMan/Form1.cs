@@ -139,5 +139,10 @@ namespace ScanMan
         {
             GetBarcodeScanner();
         }
+
+        private void toolStripButtonMode_Click(object sender, EventArgs e)
+        {
+            ChangeMode(new ModeSelectionControl());
+        }
     }
 }

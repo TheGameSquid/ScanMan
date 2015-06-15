@@ -34,13 +34,13 @@ namespace ScanMan
         private void buttonModeKitting_Click(object sender, EventArgs e)
         {
             Form1 parent = (Form1)this.Parent.Parent;
-            parent.ChangeMode(new ModeRequestControl());
+            parent.ChangeMode(new ModeKittingControl());
         }
 
         private void buttonWIP_Click(object sender, EventArgs e)
         {
             Form1 parent = (Form1)this.Parent.Parent;
-            parent.ChangeMode(new ModeKittingControl());
+            parent.ChangeMode(new ModeRequestControl());
         }
     }
 }

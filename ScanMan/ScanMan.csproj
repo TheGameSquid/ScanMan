@@ -99,10 +99,9 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings1.cs" />
+    <None Include="Images\Change.png" />
     <None Include="Images\No.png" />
     <None Include="Images\Yes.png" />
-    <None Include="Yes.png" />
-    <None Include="No.png" />
     <EmbeddedResource Include="Asset.resx">
       <DependentUpon>Asset.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,6 +134,7 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Change.png" />
     <Content Include="Documents\Base\Checklist.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
