@@ -46,6 +46,7 @@ namespace ScanMan
                     barCodeReader.Open();
                     barCodeReader.DataReceived += new SerialDataReceivedEventHandler(BarcodeReader_DataReceived);
                     // TODO pictureBox1.BackColor = System.Drawing.Color.YellowGreen;
+                    toolStripButtonScanner.Image = ScanMan.Properties.Resources.Yes;
                 }
             }
             catch
@@ -53,6 +54,7 @@ namespace ScanMan
                 //pbErrorStat.Enabled = false;
 
                 // TODO: pictureBox1.BackColor = System.Drawing.Color.OrangeRed;
+                toolStripButtonScanner.Image = ScanMan.Properties.Resources.No;
                 this.Refresh();
            }
         }

@@ -43,14 +43,15 @@ namespace ScanMan
         {
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             excelApp.Visible = false;
-            Microsoft.Office.Interop.Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(Path.Combine(Directory.GetCurrentDirectory(), "Checklist.xlsx"));
+            Microsoft.Office.Interop.Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(Path.Combine(Directory.GetCurrentDirectory(), "Documents", "Base", "Checklist.xlsx"));
             Microsoft.Office.Interop.Excel.Worksheet excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelWorkbook.Sheets[1];
 
             excelSheet.Cells[4, 2] = excelSheet.Cells[4, 2].Text + " " + controlKittingAsset.txtAsset.Text;
             excelSheet.Cells[5, 2] = excelSheet.Cells[5, 2].Text + " " + controlKittingAsset.txtType.Text;
             excelSheet.Cells[6, 2] = excelSheet.Cells[6, 2].Text + " " + txtName.Text;
 
-            string strFile = Path.Combine(Directory.GetCurrentDirectory(), "FLOEPDOODLE.xlsx");
+            string strFileName = "Kitting-" + DateTime.Now.ToString("yyyyMMdd-hhmmss") + ".xlsx";
+            string strFile = Path.Combine(Directory.GetCurrentDirectory(), "Documents", "Output", strFileName);
             excelWorkbook.Application.DisplayAlerts = false;
             excelWorkbook.SaveAs(Filename: strFile, ConflictResolution: XlSaveConflictResolution.xlLocalSessionChanges);
             excelWorkbook.Close();
