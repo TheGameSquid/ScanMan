@@ -139,11 +139,9 @@ namespace ScanMan
 
         public void Print()
         {
-            string sfileName = DateTime.Now.ToString("yyyyMMdd_hhmmss") + txtReason.Text + "_" + txtName.Text + ".pdf";
+            string strFileName = "Request-" + DateTime.Now.ToString("yyyyMMdd-hhmmss") + "-" + txtReason.Text + "-" + txtName.Text + ".pdf";
             SaveFileDialog of = new SaveFileDialog();
-            of.InitialDirectory = @"C:\Data";
-            of.InitialDirectory = Properties.Settings.Default.FileDir;
-            of.FileName = of.InitialDirectory + "\\" + sfileName;
+            of.FileName = Path.Combine(Directory.GetCurrentDirectory(), "Documents", "Output", strFileName);
             string fileName = of.FileName;
             Letter1 mydoc = new Letter1();
 

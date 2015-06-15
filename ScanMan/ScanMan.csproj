@@ -98,8 +98,9 @@
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Content Include="Images\No.png" />
-    <Content Include="Images\Yes.png" />
+    <Compile Include="Settings1.cs" />
+    <None Include="Images\No.png" />
+    <None Include="Images\Yes.png" />
     <None Include="Yes.png" />
     <None Include="No.png" />
     <EmbeddedResource Include="Asset.resx">
@@ -138,7 +139,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">

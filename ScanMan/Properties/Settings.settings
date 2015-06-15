@@ -6,13 +6,13 @@
       <Value Profile="(Default)">COM8</Value>
     </Setting>
     <Setting Name="FileDir" Type="System.String" Scope="User">
-      <Value Profile="(Default)">c:\Data</Value>
+      <Value Profile="(Default)">C:\Data</Value>
     </Setting>
     <Setting Name="Printer" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ErrorOU" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">OU=Deployment,OU=Resources,OU=PROD,OU=YPTO,OU=Unit placeholder,DC=msnet,DC=railb,DC=be</Value>
     </Setting>
   </Settings>
 </SettingsFile>
