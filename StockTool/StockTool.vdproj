@@ -171,7 +171,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_30435DE33E7747E6BC6F91336AB96DB6"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:C:\\Apps\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -241,15 +241,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:StockTool"
-        "ProductCode" = "8:{FD39DBCB-9291-4E7E-BFCC-98BDD66E86FD}"
-        "PackageCode" = "8:{98AAE12D-F2F2-4FD4-A73E-E5F077B9D886}"
+        "ProductCode" = "8:{2F667EF7-5E5D-46F4-9E3F-30014CE04E83}"
+        "PackageCode" = "8:{C77B3BC5-09EF-4359-8D1E-ACFF0B8AE36A}"
         "UpgradeCode" = "8:{C2C1FB3F-D739-42A5-B38C-66E775C27853}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.2"
+        "ProductVersion" = "8:1.2.1"
         "Manufacturer" = "8:Ypto"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

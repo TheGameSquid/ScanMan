@@ -38,6 +38,7 @@
       <HintPath>..\..\..\..\archive\YBook\YBook\bin\Debug\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
@@ -63,6 +64,10 @@
     <Compile Include="AssetKitting.Designer.cs">
       <DependentUpon>AssetKitting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\ScanTypes.cs" />
+    <Compile Include="Config\BarcodeTypeConfiguration.cs" />
+    <Compile Include="Config\BarcodeTypeConfigurationCollection.cs" />
+    <Compile Include="Config\BarcodeTypeConfigurationSection.cs" />
     <Compile Include="Controls\ModeKittingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -97,7 +97,8 @@ namespace ScanMan
                 }
                 else
                 {
-                    txtReason.Text = barcode;
+                    // Else this is something weird
+                    //txtReason.Text = barcode;
                 }
 
             }
@@ -139,7 +140,7 @@ namespace ScanMan
 
         public void Print()
         {
-            string strFileName = "Request-" + DateTime.Now.ToString("yyyyMMdd-hhmmss") + "-" + txtReason.Text + "-" + txtName.Text + ".pdf";
+            string strFileName = "Request-" + DateTime.Now.ToString("yyyyMMdd-HHmmss") + "-" + txtReason.Text + "-" + txtName.Text + ".pdf";
             SaveFileDialog of = new SaveFileDialog();
             of.FileName = Path.Combine(Directory.GetCurrentDirectory(), "Documents", "Output", strFileName);
             string fileName = of.FileName;

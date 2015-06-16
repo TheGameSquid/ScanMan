@@ -38,8 +38,6 @@
             this.txtDepartment = new System.Windows.Forms.TextBox();
             this.txtReason = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.pictureScanner = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureScanner)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonAdd
@@ -145,26 +143,10 @@
             this.txtName.Size = new System.Drawing.Size(652, 44);
             this.txtName.TabIndex = 13;
             // 
-            // pictureScanner
-            // 
-            this.pictureScanner.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureScanner.BackColor = System.Drawing.Color.GreenYellow;
-            this.pictureScanner.Image = global::ScanMan.Properties.Resources.scanner;
-            this.pictureScanner.InitialImage = null;
-            this.pictureScanner.Location = new System.Drawing.Point(1423, 6);
-            this.pictureScanner.Margin = new System.Windows.Forms.Padding(6);
-            this.pictureScanner.Name = "pictureScanner";
-            this.pictureScanner.Size = new System.Drawing.Size(220, 187);
-            this.pictureScanner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureScanner.TabIndex = 23;
-            this.pictureScanner.TabStop = false;
-            this.pictureScanner.Click += new System.EventHandler(this.pictureScanner_Click);
-            // 
             // ModeRequestControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pictureScanner);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.panelAssets);
             this.Controls.Add(this.buttonClear);
@@ -177,7 +159,6 @@
             this.Controls.Add(this.txtName);
             this.Name = "ModeRequestControl";
             this.Size = new System.Drawing.Size(1678, 959);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureScanner)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,7 +166,6 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureScanner;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.FlowLayoutPanel panelAssets;
         private System.Windows.Forms.Button buttonClear;
