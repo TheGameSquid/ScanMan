@@ -84,19 +84,21 @@ namespace ScanMan
             this.panelMain.Controls.Add(modeControl);
         }
 
-        private void BarcodeLogic(string barcode)
+        private void BarcodeLogic(string strBarcode)
         {
-            if (barcode.Substring(0, 3) == "MD_")
+            Barcode barcode = new Barcode(strBarcode);
+
+            if (barcode.Name == "ModeSelection")
             {
-                if (barcode == "MD_Selection")
+                if (barcode.Value == "MD_Selection")
                 {
                     ChangeMode(new ModeSelectionControl());
                 }
-                else if (barcode == "MD_WIP")
+                else if (barcode.Value == "MD_WIP")
                 {
                     ChangeMode(new ModeRequestControl());
                 }
-                else if (barcode == "MD_Kitting")
+                else if (barcode.Value == "MD_Kitting")
                 {
                     ChangeMode(new ModeKittingControl());
                 }

@@ -7,7 +7,7 @@ namespace ScanMan
 {
     interface IModeControl
     {
-        void BarcodeLogic(string barcode);
+        void BarcodeLogic(Barcode barcode);
         void Clear();
         void Print();
     }

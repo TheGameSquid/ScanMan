@@ -28,80 +28,113 @@ namespace ScanMan
             panelAssets.AutoScroll = true;
         }
 
-        public void BarcodeLogic(string barcode)
+        public void BarcodeLogic(Barcode barcode)
         {
-            if (barcode.Contains("_"))
+            if (barcode.Type == BarcodeType.AssetAD || barcode.Type == BarcodeType.AssetNonAD)
             {
-                if (barcode.Substring(0, 3) == "TP_")
+                if (barcode.Type == BarcodeType.AssetAD)
                 {
-                    Asset itm = new Asset();
+                    using (PrincipalContext context = new PrincipalContext(ContextType.Domain))
+                    {
+                        DirectoryEntry directory = new DirectoryEntry("LDAP://DC=msnet,DC=railb,DC=be");
+                        //DirectoryEntry directory = new DirectoryEntry("LDAP://OU=Intra Unit Transfert,OU=YPTO,OU=Unit placeholder,DC=msnet,DC=railb,DC=be");        
+                        DirectorySearcher searcher = new DirectorySearcher(directory);
+                        searcher.Filter = ("(&(objectClass=computer)(sAMAccountName=*130021498))");         
+                        searcher.SizeLimit = Int32.MaxValue;
+                        searcher.PageSize = Int32.MaxValue;
 
-                    itm.Name = panelAssets.Controls.Count.ToString();
-                    itm.txtType.Text = barcode.Substring(3);
-                    itm.Anchor = AnchorStyles.Left;
-                    itm.Dock = DockStyle.Right;
-                    Size sz = new System.Drawing.Size();
-                    sz = itm.Size;
-                    sz.Width = panelAssets.Size.Width - 10;
-                    itm.Size = sz;
-                    panelAssets.Controls.Add(itm);
-                }
-                if (barcode.Substring(0, 3) == "NM_")
-                {
-                    txtName.Text = barcode.Substring(3);
-                }
-                if (barcode.Substring(0, 3) == "DP_")
-                {
-                    txtDepartment.Text = barcode.Substring(3);
-                }
-                if (barcode.Substring(0, 3) == "RN_" || barcode.Substring(0, 2) == "WO" || barcode.Substring(0, 2) == "GO")
-                {
-                    txtReason.Text = barcode.Substring(3);
-                    // TODO: There is currently no "inbound" logic yet
-                    inbound = false;
-                    //if (txtReden.Text.ToUpper().Contains("IN"))
-                    //{
-                    //    inbound = true;
-                    //}
-                    //else
-                    //{
-                    //    inbound = false;
-                    //}
-                }
-                if (barcode.Substring(0, 3) == "CM_")
-                {
-                    if (barcode.Substring(3, 3) == "PRN")
-                    {
-                        Print();
-                    }
-                    if (barcode.Substring(3, 3) == "CLR")
-                    {
-                        Clear();
+                        DateTime start;
+                        DateTime stop;
+
+                        start = DateTime.Now;
+
+                        SearchResult result = searcher.FindOne();
+
+                        stop = DateTime.Now;
+
+                        if (result != null)
+                        {
+                            Int16 lol = 1;
+                        }
+                        else
+                        {
+                            Int16 lol = 1;
+                        }
                     }
                 }
-
             }
-            else
-            {
-                if (barcode.Length == 9)
-                {
-                    if (panelAssets.Controls.Count == 0)
-                    {
-                        MessageBox.Show("Please scan an asset-type first!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    else
-                    {
-                        Asset itm = panelAssets.Controls.Find((panelAssets.Controls.Count - 1).ToString(), true)[0] as Asset;
-                        itm.txtAsset.Text = barcode;
-                    }
-                }
-                else
-                {
-                    // Else this is something weird
-                    //txtReason.Text = barcode;
-                }
+            //if (barcode.Contains("_"))
+            //{
+            //    if (barcode.Substring(0, 3) == "TP_")
+            //    {
+            //        Asset itm = new Asset();
 
-            }
+            //        itm.Name = panelAssets.Controls.Count.ToString();
+            //        itm.txtType.Text = barcode.Substring(3);
+            //        itm.Anchor = AnchorStyles.Left;
+            //        itm.Dock = DockStyle.Right;
+            //        Size sz = new System.Drawing.Size();
+            //        sz = itm.Size;
+            //        sz.Width = panelAssets.Size.Width - 10;
+            //        itm.Size = sz;
+            //        panelAssets.Controls.Add(itm);
+            //    }
+            //    if (barcode.Substring(0, 3) == "NM_")
+            //    {
+            //        txtName.Text = barcode.Substring(3);
+            //    }
+            //    if (barcode.Substring(0, 3) == "DP_")
+            //    {
+            //        txtDepartment.Text = barcode.Substring(3);
+            //    }
+            //    if (barcode.Substring(0, 3) == "RN_" || barcode.Substring(0, 2) == "WO" || barcode.Substring(0, 2) == "GO")
+            //    {
+            //        txtReason.Text = barcode.Substring(3);
+            //        // TODO: There is currently no "inbound" logic yet
+            //        inbound = false;
+            //        //if (txtReden.Text.ToUpper().Contains("IN"))
+            //        //{
+            //        //    inbound = true;
+            //        //}
+            //        //else
+            //        //{
+            //        //    inbound = false;
+            //        //}
+            //    }
+            //    if (barcode.Substring(0, 3) == "CM_")
+            //    {
+            //        if (barcode.Substring(3, 3) == "PRN")
+            //        {
+            //            Print();
+            //        }
+            //        if (barcode.Substring(3, 3) == "CLR")
+            //        {
+            //            Clear();
+            //        }
+            //    }
+
+            //}
+            //else
+            //{
+            //    if (barcode.Length == 9)
+            //    {
+            //        if (panelAssets.Controls.Count == 0)
+            //        {
+            //            MessageBox.Show("Please scan an asset-type first!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //        }
+            //        else
+            //        {
+            //            Asset itm = panelAssets.Controls.Find((panelAssets.Controls.Count - 1).ToString(), true)[0] as Asset;
+            //            itm.txtAsset.Text = barcode;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        // Else this is something weird
+            //        //txtReason.Text = barcode;
+            //    }
+
+            //}
         }
 
         public void Clear()

@@ -18,19 +18,32 @@ namespace ScanMan
             InitializeComponent();
         }
 
-        public void BarcodeLogic(string barcode)
+        public void BarcodeLogic(Barcode barcode)
         {
-            if (barcode.Substring(0, 3) == "TP_")
+            //if (barcode.Substring(0, 3) == "TP_")
+            //{
+            //    this.controlKittingAsset.txtType.Text = barcode.Substring(3);
+            //}
+            //else if (barcode.Substring(0, 3) == "NM_")
+            //{
+            //    txtName.Text = barcode.Substring(3);
+            //}
+            //else
+            //{
+            //    this.controlKittingAsset.txtAsset.Text = barcode;
+            //}
+
+            if (barcode.Name == "AssetType")
             {
-                this.controlKittingAsset.txtType.Text = barcode.Substring(3);
+                this.controlKittingAsset.txtType.Text = barcode.Value;
             }
-            else if (barcode.Substring(0, 3) == "NM_")
+            else if (barcode.Name == "Name")
             {
-                txtName.Text = barcode.Substring(3);
+                this.txtName.Text = barcode.Value;
             }
-            else
+            else if (barcode.Type == BarcodeType.AssetAD || barcode.Type == BarcodeType.AssetNonAD)
             {
-                this.controlKittingAsset.txtAsset.Text = barcode;
+                this.controlKittingAsset.txtAsset.Text = barcode.Value;
             }
         }
 

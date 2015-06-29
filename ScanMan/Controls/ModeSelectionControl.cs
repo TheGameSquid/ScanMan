@@ -16,7 +16,7 @@ namespace ScanMan
             InitializeComponent();
         }
 
-        public void BarcodeLogic(string barcode)
+        public void BarcodeLogic(Barcode barcode)
         {
             // No specific logic required
         }
